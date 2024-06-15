@@ -1,7 +1,9 @@
+import { SuggestionType } from "types/suggestions";
 import * as S from "./Suggestions.styled";
 
 export interface SuggestionsProps {
   className?: string;
+  suggestions: SuggestionType[];
 }
 
 const Suggestions: React.FunctionComponent<SuggestionsProps> = ({
