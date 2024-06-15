@@ -1,11 +1,36 @@
-import * as S from './Input.styled';
+import * as S from "./Input.styled";
 
 export interface InputProps {
   className?: string;
-};
-
-const Input: React.FunctionComponent<InputProps> = ({ className }) => {
-  return <S.Wrapper className={className}>Input</S.Wrapper>;
+  value: string;
+  onChange: (value: string) => void;
+  onFocusChange: (state: boolean) => void;
 }
+
+const Input: React.FunctionComponent<InputProps> = ({
+  className,
+  value,
+  onChange,
+  onFocusChange,
+}) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(e.target.value);
+  };
+
+  const handleFocusChange = (state: boolean) => () => {
+    onFocusChange(state);
+  };
+
+  return (
+    <S.Input
+      type="text"
+      value={value}
+      onChange={handleChange}
+      onFocus={handleFocusChange(true)}
+      onBlur={handleFocusChange(false)}
+      className={className}
+    />
+  );
+};
 
 export default Input;
