@@ -1,4 +1,4 @@
 /* import { fetchRepositories } from './mockedFetch'; */
-import { fetchRepositories } from './fetch';
+import { fetchRepositories, feetchUsers } from './fetch';
 
-export { fetchRepositories };
+export { fetchRepositories, feetchUsers };
