@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { useKeyboardSelect, useUpDownArrowNav } from 'hooks';
 import { SuggestionType } from 'types/suggestions';
 import * as S from './Suggestions.styled';
@@ -23,7 +23,10 @@ const Suggestions: React.FunctionComponent<SuggestionsProps> = ({
   showSuggestions,
   isLoading
 }) => {
+  const [isSelectable, setSelectable] = useState(true);
+
   const handleKeyboardSelection = (index: number) => {
+    setSelectable(false);
     onChangeActive(index);
     document
       .getElementById(suggestions[index]?.name)
@@ -33,13 +36,23 @@ const Suggestions: React.FunctionComponent<SuggestionsProps> = ({
   useUpDownArrowNav(activeIndex, handleKeyboardSelection, suggestions);
   useKeyboardSelect(activeIndex, onSelect);
 
+  const handleMouseSelection = (index: number) => () => {
+    if (isSelectable) onChangeActive(index);
+  };
+
   return (
-    <S.Wrapper className={className} $isVisible={showSuggestions}>
+    <S.Wrapper
+      className={className}
+      $isVisible={showSuggestions}
+      onMouseMove={() => {
+        setSelectable(true);
+      }}
+    >
       <S.SuggestionsList>
         {suggestions.map((suggestion, idx) => (
           <S.Suggestion
             $isActive={activeIndex === idx}
-            onMouseEnter={() => onChangeActive(idx)}
+            onMouseEnter={handleMouseSelection(idx)}
             onClick={() => onSelect(idx)}
             key={suggestion.name}
             id={suggestion.name}
