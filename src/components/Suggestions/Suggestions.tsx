@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { useKeyboardSelect, useUpDownArrowNav } from 'hooks';
 import { SuggestionType } from 'types/suggestions';
 import * as S from './Suggestions.styled';
@@ -21,6 +22,12 @@ const Suggestions: React.FunctionComponent<SuggestionsProps> = ({
   useUpDownArrowNav(activeIndex, onChangeActive, suggestions);
   useKeyboardSelect(activeIndex, onSelect);
 
+  useEffect(() => {
+    document
+      .getElementById(suggestions[activeIndex]?.name)
+      ?.scrollIntoView({ block: 'end' });
+  }, [activeIndex]);
+
   return (
     <S.Wrapper className={className}>
       <S.SuggestionsList>
@@ -30,6 +37,7 @@ const Suggestions: React.FunctionComponent<SuggestionsProps> = ({
             onMouseEnter={() => onChangeActive(idx)}
             onClick={() => onSelect(idx)}
             key={suggestion.name}
+            id={suggestion.name}
           >
             <S.SuggestionValue>{suggestion.name}</S.SuggestionValue>
             <S.SuggestionType>{suggestion.type}</S.SuggestionType>

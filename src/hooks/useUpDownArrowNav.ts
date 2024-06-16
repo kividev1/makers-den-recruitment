@@ -6,10 +6,10 @@ export const useUpDownArrowNav = (
   items: any[]
 ) => {
   useEffect(() => {
-    document.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown);
 
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [activeItemIndex]);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeItemIndex, items]);
 
   const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'ArrowDown') {

@@ -1,6 +1,9 @@
 import { styled, css } from 'styled-components';
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  height: 30vh;
+  overflow-y: auto;
+`;
 
 export const SuggestionsList = styled.ul``;
 
