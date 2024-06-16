@@ -43,6 +43,10 @@ const SearchBar: React.FunctionComponent<SearchBarProps> = ({ className }) => {
     setIsInputFocused(state);
   };
 
+  const handleSelectSuggestion = (index: number) => {
+    console.log('Suggestion selected: ' + index);
+  };
+
   return (
     <S.Wrapper className={className}>
       <S.SearchInput
@@ -55,6 +59,7 @@ const SearchBar: React.FunctionComponent<SearchBarProps> = ({ className }) => {
         isLoading={isSearchLoading}
         activeIndex={activeSuggestion}
         onChangeActive={setActiveSuggestion}
+        onSelect={handleSelectSuggestion}
       />
     </S.Wrapper>
   );
