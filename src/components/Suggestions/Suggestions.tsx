@@ -20,16 +20,18 @@ const Suggestions: React.FunctionComponent<SuggestionsProps> = ({
   activeIndex,
   onChangeActive,
   onSelect,
-  showSuggestions
+  showSuggestions,
+  isLoading
 }) => {
-  useUpDownArrowNav(activeIndex, onChangeActive, suggestions);
-  useKeyboardSelect(activeIndex, onSelect);
-
-  useEffect(() => {
+  const handleKeyboardSelection = (index: number) => {
+    onChangeActive(index);
     document
-      .getElementById(suggestions[activeIndex]?.name)
+      .getElementById(suggestions[index]?.name)
       ?.scrollIntoView({ block: 'end' });
-  }, [activeIndex]);
+  };
+
+  useUpDownArrowNav(activeIndex, handleKeyboardSelection, suggestions);
+  useKeyboardSelect(activeIndex, onSelect);
 
   return (
     <S.Wrapper className={className} $isVisible={showSuggestions}>
@@ -48,9 +50,11 @@ const Suggestions: React.FunctionComponent<SuggestionsProps> = ({
         ))}
       </S.SuggestionsList>
 
-      {suggestions.length === 0 && (
+      {suggestions.length === 0 && !isLoading && (
         <S.Message>{copies.search['searchbox.noResults']}</S.Message>
       )}
+
+      {isLoading && <S.Spinner />}
     </S.Wrapper>
   );
 };

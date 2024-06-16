@@ -1,5 +1,7 @@
 import { styled, css } from 'styled-components';
 
+import SpinnerComponent from 'components/Spinner';
+
 export const Wrapper = styled.div<{ $isVisible: boolean }>`
   height: 30vh;
   overflow-y: auto;
@@ -30,3 +32,5 @@ export const SuggestionValue = styled.span``;
 export const SuggestionType = styled.span``;
 
 export const Message = styled.div``;
+
+export const Spinner = styled(SpinnerComponent)``;

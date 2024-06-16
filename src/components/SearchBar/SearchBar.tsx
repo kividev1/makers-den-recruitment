@@ -28,9 +28,9 @@ const SearchBar: React.FunctionComponent<SearchBarProps> = ({ className }) => {
   const updateSuggestions = useCallback(
     debounce(async (query: string) => {
       if (query.length >= MIN_NUM_CHARS_TO_QUERY_GH) {
+        setShowSuggestions(true);
         const suggestions = await fetchReposAndUsersByQuery(query);
         setSuggestions(suggestions);
-        setShowSuggestions(true);
       } else {
         setShowSuggestions(false);
       }
