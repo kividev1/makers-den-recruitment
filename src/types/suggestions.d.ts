@@ -1,4 +1,4 @@
 export type SuggestionType = {
-  repository: string;
-  owner: string;
+  name: string;
+  type: 'repository' | 'user';
 };
