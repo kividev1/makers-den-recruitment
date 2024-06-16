@@ -48,20 +48,22 @@ const Suggestions: React.FunctionComponent<SuggestionsProps> = ({
         setSelectable(true);
       }}
     >
-      <S.SuggestionsList>
-        {suggestions.map((suggestion, idx) => (
-          <S.Suggestion
-            $isActive={activeIndex === idx}
-            onMouseEnter={handleMouseSelection(idx)}
-            onClick={() => onSelect(idx)}
-            key={suggestion.name}
-            id={suggestion.name}
-          >
-            <S.SuggestionValue>{suggestion.name}</S.SuggestionValue>
-            <S.SuggestionType>{suggestion.type}</S.SuggestionType>
-          </S.Suggestion>
-        ))}
-      </S.SuggestionsList>
+      {!isLoading && (
+        <S.SuggestionsList>
+          {suggestions.map((suggestion, idx) => (
+            <S.Suggestion
+              $isActive={activeIndex === idx}
+              onMouseEnter={handleMouseSelection(idx)}
+              onClick={() => onSelect(idx)}
+              key={suggestion.name}
+              id={suggestion.name}
+            >
+              <S.SuggestionValue>{suggestion.name}</S.SuggestionValue>
+              <S.SuggestionType>{suggestion.type}</S.SuggestionType>
+            </S.Suggestion>
+          ))}
+        </S.SuggestionsList>
+      )}
 
       {suggestions.length === 0 && !isLoading && (
         <S.Message>{copies.search['searchbox.noResults']}</S.Message>

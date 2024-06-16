@@ -3,10 +3,6 @@ import Input from 'components/Input';
 import Suggestions from 'components/Suggestions';
 
 export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 40vw;
 `;
 

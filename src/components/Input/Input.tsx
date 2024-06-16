@@ -1,8 +1,9 @@
-import * as S from "./Input.styled";
+import * as S from './Input.styled';
 
 export interface InputProps {
   className?: string;
   value: string;
+  placeholder: string;
   onChange: (value: string) => void;
   onFocusChange: (state: boolean) => void;
 }
@@ -10,8 +11,9 @@ export interface InputProps {
 const Input: React.FunctionComponent<InputProps> = ({
   className,
   value,
+  placeholder,
   onChange,
-  onFocusChange,
+  onFocusChange
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(e.target.value);
@@ -25,6 +27,7 @@ const Input: React.FunctionComponent<InputProps> = ({
     <S.Input
       type="text"
       value={value}
+      placeholder={placeholder}
       onChange={handleChange}
       onFocus={handleFocusChange(true)}
       onBlur={handleFocusChange(false)}

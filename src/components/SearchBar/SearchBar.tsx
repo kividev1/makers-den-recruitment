@@ -7,6 +7,7 @@ import { SuggestionType } from 'types/suggestions';
 import { useGithubSearch } from 'hooks';
 
 import { MIN_NUM_CHARS_TO_QUERY_GH, GB_SEARCH_DEBOUNCE_TIMEOUT } from 'config';
+import copies from 'copies';
 
 export interface SearchBarProps {
   className?: string;
@@ -55,6 +56,7 @@ const SearchBar: React.FunctionComponent<SearchBarProps> = ({ className }) => {
     <S.Wrapper className={className}>
       <S.SearchInput
         value={userInput}
+        placeholder={copies.search['searchbox.label']}
         onChange={onSearchInputChange}
         onFocusChange={onSearchInputFocusChange}
       />

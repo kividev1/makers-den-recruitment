@@ -10,9 +10,9 @@ const rotation = keyframes`
 `;
 
 export const Spinner = styled.div`
-  width: 48px;
-  height: 48px;
-  border: 5px solid ${({ theme }) => theme.colors.black};
+  width: 2.5vw;
+  height: 2.5vw;
+  border: 3px solid ${({ theme }) => theme.colors.primary};
   border-bottom-color: transparent;
   border-radius: 50%;
   display: inline-block;
