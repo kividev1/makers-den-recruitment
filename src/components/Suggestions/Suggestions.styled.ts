@@ -28,14 +28,6 @@ export const Suggestion = styled.li<{ $isActive: boolean }>`
   justify-content: space-between;
   padding: 0.5vw 0;
 
-  &:first-child {
-    padding-top: 0;
-  }
-
-  &:last-child {
-    padding-bottom: 0;
-  }
-
   ${({ $isActive, theme }) =>
     $isActive &&
     css`
@@ -46,7 +38,9 @@ export const Suggestion = styled.li<{ $isActive: boolean }>`
 
 export const SuggestionValue = styled.span``;
 
-export const SuggestionType = styled.span``;
+export const SuggestionType = styled.span`
+  opacity: 0.6;
+`;
 
 export const Message = styled.div`
   width: 100%;

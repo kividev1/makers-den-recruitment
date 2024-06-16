@@ -3,6 +3,8 @@ import resetCSS from 'utils/resetStyles';
 import theme from 'theme';
 
 export default createGlobalStyle`
+  ${resetCSS}
+
   * {
     box-sizing: border-box;
     margin: 0;
@@ -59,7 +61,6 @@ export default createGlobalStyle`
   body {
     width: 100%;
     height: min-content;
+    font-family: sans-serif;
   }
-
-  ${resetCSS}
 `;
