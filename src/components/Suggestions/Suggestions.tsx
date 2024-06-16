@@ -2,11 +2,13 @@ import { useEffect, useRef } from 'react';
 import { useKeyboardSelect, useUpDownArrowNav } from 'hooks';
 import { SuggestionType } from 'types/suggestions';
 import * as S from './Suggestions.styled';
+import copies from 'copies';
 
 export interface SuggestionsProps {
   className?: string;
   suggestions: SuggestionType[];
   isLoading: boolean;
+  showSuggestions: boolean;
   activeIndex: number;
   onChangeActive: (index: number) => void;
   onSelect: (index: number) => void;
@@ -17,7 +19,8 @@ const Suggestions: React.FunctionComponent<SuggestionsProps> = ({
   suggestions,
   activeIndex,
   onChangeActive,
-  onSelect
+  onSelect,
+  showSuggestions
 }) => {
   useUpDownArrowNav(activeIndex, onChangeActive, suggestions);
   useKeyboardSelect(activeIndex, onSelect);
@@ -29,7 +32,7 @@ const Suggestions: React.FunctionComponent<SuggestionsProps> = ({
   }, [activeIndex]);
 
   return (
-    <S.Wrapper className={className}>
+    <S.Wrapper className={className} $isVisible={showSuggestions}>
       <S.SuggestionsList>
         {suggestions.map((suggestion, idx) => (
           <S.Suggestion
@@ -44,6 +47,10 @@ const Suggestions: React.FunctionComponent<SuggestionsProps> = ({
           </S.Suggestion>
         ))}
       </S.SuggestionsList>
+
+      {suggestions.length === 0 && (
+        <S.Message>{copies.search['searchbox.noResults']}</S.Message>
+      )}
     </S.Wrapper>
   );
 };

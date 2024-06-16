@@ -17,6 +17,7 @@ const SearchBar: React.FunctionComponent<SearchBarProps> = ({ className }) => {
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [suggestions, setSuggestions] = useState<SuggestionType[]>([]);
   const [activeSuggestion, setActiveSuggestion] = useState(-1);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   const {
     fetchReposAndUsersByQuery,
@@ -29,6 +30,9 @@ const SearchBar: React.FunctionComponent<SearchBarProps> = ({ className }) => {
       if (query.length >= MIN_NUM_CHARS_TO_QUERY_GH) {
         const suggestions = await fetchReposAndUsersByQuery(query);
         setSuggestions(suggestions);
+        setShowSuggestions(true);
+      } else {
+        setShowSuggestions(false);
       }
     }, GB_SEARCH_DEBOUNCE_TIMEOUT),
     []
@@ -60,6 +64,7 @@ const SearchBar: React.FunctionComponent<SearchBarProps> = ({ className }) => {
         activeIndex={activeSuggestion}
         onChangeActive={setActiveSuggestion}
         onSelect={handleSelectSuggestion}
+        showSuggestions={showSuggestions}
       />
     </S.Wrapper>
   );
