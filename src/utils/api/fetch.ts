@@ -21,7 +21,7 @@ export const fetchRepositories = async (
   }));
 };
 
-export const feetchUsers = async (
+export const fetchUsers = async (
   query: string,
   page: number = 1,
   limit: number = 50
