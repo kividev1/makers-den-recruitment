@@ -11,14 +11,14 @@ export const useGithubSearch = () => {
   const fetchReposAndUsersByQuery = async (
     query: string
   ): Promise<SuggestionType[]> => {
-    const results: SuggestionType[] = [];
+    let results: SuggestionType[] = [];
 
     try {
       setIsLoading(true);
       const repositories = await fetchRepositories(query);
       const users = await fetchUsers(query);
 
-      results.concat(repositories).concat(users);
+      results = results.concat(repositories).concat(users);
     } catch (e) {
       console.error(e);
       setIsLoading(false);
@@ -26,7 +26,7 @@ export const useGithubSearch = () => {
     }
 
     setIsLoading(false);
-    return results;
+    return results.sort((a, b) => a.name.localeCompare(b.name));
   };
 
   return { error, isLoading, fetchReposAndUsersByQuery };

@@ -26,16 +26,14 @@ export const fetchUsers = async (
   page: number = 1,
   limit: number = 50
 ): Promise<SuggestionType[]> => {
-  const { data: repositoriesResults } = await githubAPIClient.rest.search.users(
-    {
-      q: query,
-      per_page: limit,
-      page: page
-    }
-  );
+  const { data: usersResults } = await githubAPIClient.rest.search.users({
+    q: query,
+    per_page: limit,
+    page: page
+  });
 
-  return repositoriesResults.items.map((repo: any) => ({
-    name: repo.full_name,
-    type: 'repository'
+  return usersResults.items.map((user: any) => ({
+    name: user.login,
+    type: 'user'
   }));
 };

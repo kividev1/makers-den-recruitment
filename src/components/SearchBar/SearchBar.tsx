@@ -1,9 +1,12 @@
 import React, { useState, useCallback } from 'react';
-import throttle from 'lodash.throttle';
+import debounce from 'lodash.debounce';
 
 import * as S from './SearchBar.styled';
+
 import { SuggestionType } from 'types/suggestions';
 import { useGithubSearch } from 'hooks';
+
+import { MIN_NUM_CHARS_TO_QUERY_GH, GB_SEARCH_DEBOUNCE_TIMEOUT } from 'config';
 
 export interface SearchBarProps {
   className?: string;
@@ -14,17 +17,19 @@ const SearchBar: React.FunctionComponent<SearchBarProps> = ({ className }) => {
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [suggestions, setSuggestions] = useState<SuggestionType[]>([]);
 
-  const { fetchReposAndUsersByQuery, error, isLoading } = useGithubSearch();
+  const {
+    fetchReposAndUsersByQuery,
+    error: searchError,
+    isLoading: isSearchLoading
+  } = useGithubSearch();
 
   const updateSuggestions = useCallback(
-    throttle(
-      async (query: string) => {
+    debounce(async (query: string) => {
+      if (query.length >= MIN_NUM_CHARS_TO_QUERY_GH) {
         const suggestions = await fetchReposAndUsersByQuery(query);
         setSuggestions(suggestions);
-      },
-      500,
-      { trailing: false }
-    ),
+      }
+    }, GB_SEARCH_DEBOUNCE_TIMEOUT),
     []
   );
 
@@ -44,7 +49,10 @@ const SearchBar: React.FunctionComponent<SearchBarProps> = ({ className }) => {
         onChange={onSearchInputChange}
         onFocusChange={onSearchInputFocusChange}
       />
-      <S.SearchSuggestions suggestions={suggestions} isLoading={false} />
+      <S.SearchSuggestions
+        suggestions={suggestions}
+        isLoading={isSearchLoading}
+      />
     </S.Wrapper>
   );
 };
