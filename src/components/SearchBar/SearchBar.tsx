@@ -16,6 +16,7 @@ const SearchBar: React.FunctionComponent<SearchBarProps> = ({ className }) => {
   const [userInput, setUserInput] = useState('');
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [suggestions, setSuggestions] = useState<SuggestionType[]>([]);
+  const [activeSuggestion, setActiveSuggestion] = useState(-1);
 
   const {
     fetchReposAndUsersByQuery,
@@ -52,6 +53,8 @@ const SearchBar: React.FunctionComponent<SearchBarProps> = ({ className }) => {
       <S.SearchSuggestions
         suggestions={suggestions}
         isLoading={isSearchLoading}
+        activeIndex={activeSuggestion}
+        onChangeActive={setActiveSuggestion}
       />
     </S.Wrapper>
   );

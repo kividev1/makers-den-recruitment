@@ -1,12 +1,19 @@
-import { styled } from 'styled-components';
+import { styled, css } from 'styled-components';
 
 export const Wrapper = styled.div``;
 
 export const SuggestionsList = styled.ul``;
 
-export const Suggestion = styled.li`
+export const Suggestion = styled.li<{ $isActive: boolean }>`
   display: flex;
   justify-content: space-between;
+
+  ${({ $isActive }) =>
+    $isActive &&
+    css`
+      background-color: blue;
+      color: white;
+    `}
 `;
 
 export const SuggestionValue = styled.span``;

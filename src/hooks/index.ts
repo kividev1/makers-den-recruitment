@@ -1,3 +1,4 @@
 import { useGithubSearch } from './useGithubSearch';
+import { useUpDownArrowNav } from './useUpDownArrowNav';
 
-export { useGithubSearch };
+export { useGithubSearch, useUpDownArrowNav };
