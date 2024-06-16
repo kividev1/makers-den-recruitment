@@ -49,7 +49,7 @@ const SearchBar: React.FunctionComponent<SearchBarProps> = ({ className }) => {
   };
 
   const handleSelectSuggestion = (index: number) => {
-    console.log('Suggestion selected: ' + index);
+    window.open(suggestions[index].url, '_blank');
   };
 
   return (
@@ -66,7 +66,7 @@ const SearchBar: React.FunctionComponent<SearchBarProps> = ({ className }) => {
         activeIndex={activeSuggestion}
         onChangeActive={setActiveSuggestion}
         onSelect={handleSelectSuggestion}
-        showSuggestions={showSuggestions}
+        showSuggestions={showSuggestions && isInputFocused}
       />
     </S.Wrapper>
   );

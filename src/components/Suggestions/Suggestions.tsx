@@ -54,7 +54,7 @@ const Suggestions: React.FunctionComponent<SuggestionsProps> = ({
             <S.Suggestion
               $isActive={activeIndex === idx}
               onMouseEnter={handleMouseSelection(idx)}
-              onClick={() => onSelect(idx)}
+              onMouseDown={() => onSelect(idx)}
               key={suggestion.name}
               id={suggestion.name}
             >

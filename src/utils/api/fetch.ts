@@ -17,7 +17,8 @@ export const fetchRepositories = async (
 
   return repositoriesResults.items.map((repo: any) => ({
     name: repo.full_name,
-    type: 'repository'
+    type: 'repository',
+    url: repo.html_url
   }));
 };
 
@@ -34,6 +35,7 @@ export const fetchUsers = async (
 
   return usersResults.items.map((user: any) => ({
     name: user.login,
-    type: 'user'
+    type: 'user',
+    url: user.html_url
   }));
 };
