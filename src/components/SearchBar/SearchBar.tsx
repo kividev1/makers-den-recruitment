@@ -3,6 +3,7 @@ import throttle from 'lodash.throttle';
 
 import * as S from './SearchBar.styled';
 import { SuggestionType } from 'types/suggestions';
+import { fetchRepositories } from 'utils/api';
 
 export interface SearchBarProps {
   className?: string;
@@ -11,11 +12,13 @@ export interface SearchBarProps {
 const SearchBar: React.FunctionComponent<SearchBarProps> = ({ className }) => {
   const [userInput, setUserInput] = useState('');
   const [isInputFocused, setIsInputFocused] = useState(false);
+  const [suggestions, setSuggestions] = useState<SuggestionType[]>([]);
 
   const updateSuggestions = useCallback(
     throttle(
-      (input: string) => {
-        console.log(input);
+      async (query: string) => {
+        const repositories = await fetchRepositories(query);
+        setSuggestions(repositories);
       },
       500,
       { trailing: false }
@@ -39,7 +42,7 @@ const SearchBar: React.FunctionComponent<SearchBarProps> = ({ className }) => {
         onChange={onSearchInputChange}
         onFocusChange={onSearchInputFocusChange}
       />
-      <S.SearchSuggestions suggestions={[]} isLoading={false} />
+      <S.SearchSuggestions suggestions={suggestions} isLoading={false} />
     </S.Wrapper>
   );
 };
