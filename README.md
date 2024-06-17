@@ -5,7 +5,7 @@ I appreciate the chance to join the company. I ejoyed doing the challange. The t
 
 Saying that, there are things that I could further improve and some more important functionalities that I would add if I would do the task as a day-to-day job.
 
-The solution is available under this link: [https://vercel.com/tobis-projects-1d0960ef/makers-den-recruitment]https://vercel.com/tobis-projects-1d0960ef/makers-den-recruitment
+The solution is available under this link: https://vercel.com/tobis-projects-1d0960ef/makers-den-recruitment
 
 ### About the solution
 There are 3 components:
