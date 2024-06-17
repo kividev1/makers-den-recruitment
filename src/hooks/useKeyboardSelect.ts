@@ -5,9 +5,9 @@ export const useKeyboardSelect = (
   onSelect: (index: number) => void
 ) => {
   useEffect(() => {
-    document.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown);
 
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, [activeItemIndex]);
 
   const handleKeyDown = (e: KeyboardEvent) => {

@@ -49,7 +49,11 @@ const Suggestions: React.FunctionComponent<SuggestionsProps> = ({
       }}
     >
       {!isLoading && (
-        <S.SuggestionsList id="suggestions" role="listbox">
+        <S.SuggestionsList
+          id="suggestions"
+          role="listbox"
+          data-testid="suggestions"
+        >
           {suggestions.length ? (
             suggestions.map((suggestion, idx) => (
               <S.Suggestion
@@ -60,6 +64,8 @@ const Suggestions: React.FunctionComponent<SuggestionsProps> = ({
                 key={suggestion.name}
                 id={suggestion.name}
                 role="option"
+                tabIndex={idx}
+                data-testid={suggestion.name}
               >
                 <S.SuggestionValue>{suggestion.name}</S.SuggestionValue>
                 <S.SuggestionType>{suggestion.type}</S.SuggestionType>
