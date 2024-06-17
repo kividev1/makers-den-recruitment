@@ -7,6 +7,9 @@ Saying that, there are things that I could further improve and some more importa
 
 The solution is available under this link: https://vercel.com/tobis-projects-1d0960ef/makers-den-recruitment
 
+!important!
+The generated for the live demo key will be valid for 30 days from 16th of June 2024.
+
 ### About the solution
 There are 3 components:
 - `components/Input` - reusable, controlled component
@@ -29,6 +32,7 @@ There are 3 components:
 - I would add a **caching mechanisms**
 - I would add change REST APi to call just **one graphql query** or I would make a backend server which would call the GH API and send me back combined results. This would also include caching mechanisms on the backend as well. Currently it's easy to exceed the GH limits.
 - Perhaps **storing previous searches** and some sort of **phrase weight calculations** to improve suggestions would be a good option
+- Implement security measures to make sure hackers are not abusing the API
 - And more :)
 
 
