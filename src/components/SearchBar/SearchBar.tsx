@@ -49,13 +49,15 @@ const SearchBar: React.FunctionComponent<SearchBarProps> = ({ className }) => {
   };
 
   const handleSelectSuggestion = (index: number) => {
+    setActiveSuggestion(-1);
+    setUserInput(suggestions[index].name);
     window.open(suggestions[index].url, '_blank');
   };
 
   return (
     <S.Wrapper className={className}>
       <S.SearchInput
-        value={userInput}
+        value={suggestions[activeSuggestion]?.name || userInput}
         placeholder={copies.search['searchbox.label']}
         onChange={onSearchInputChange}
         onFocusChange={onSearchInputFocusChange}
