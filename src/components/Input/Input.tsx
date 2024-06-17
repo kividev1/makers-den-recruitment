@@ -32,6 +32,9 @@ const Input: React.FunctionComponent<InputProps> = ({
       onFocus={handleFocusChange(true)}
       onBlur={handleFocusChange(false)}
       className={className}
+      aria-autocomplete="list"
+      role="combobox"
+      aria-controls="suggestions"
     />
   );
 };

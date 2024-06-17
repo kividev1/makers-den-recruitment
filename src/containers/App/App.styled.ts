@@ -19,6 +19,6 @@ export const Wrapper = styled.div`
 export const SearchBar = styled(SearchBarComponent)``;
 
 export const Logo = styled(LogoComponent)`
-  width: 20vw;
+  width: 20vmax;
   margin-bottom: 5vh;
 `;

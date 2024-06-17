@@ -3,7 +3,7 @@ import Input from 'components/Input';
 import Suggestions from 'components/Suggestions';
 
 export const Wrapper = styled.div`
-  width: 40vw;
+  width: 40vmax;
 `;
 
 export const SearchInput = styled(Input)`

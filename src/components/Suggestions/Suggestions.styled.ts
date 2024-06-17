@@ -19,9 +19,7 @@ export const Wrapper = styled.div<{ $isVisible: boolean }>`
     `};
 `;
 
-export const SuggestionsList = styled.ul`
-  width: 100%;
-`;
+export const SuggestionsList = styled.ul``;
 
 export const Suggestion = styled.li<{ $isActive: boolean }>`
   display: flex;
@@ -42,7 +40,7 @@ export const SuggestionType = styled.span`
   opacity: 0.6;
 `;
 
-export const Message = styled.div`
+export const Message = styled.li`
   width: 100%;
 `;
 

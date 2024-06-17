@@ -30,7 +30,7 @@ const Suggestions: React.FunctionComponent<SuggestionsProps> = ({
     onChangeActive(index);
     document
       .getElementById(suggestions[index]?.name)
-      ?.scrollIntoView({ block: 'end' });
+      ?.scrollIntoView({ block: 'center' });
   };
 
   useUpDownArrowNav(activeIndex, handleKeyboardSelection, suggestions);
@@ -49,26 +49,29 @@ const Suggestions: React.FunctionComponent<SuggestionsProps> = ({
       }}
     >
       {!isLoading && (
-        <S.SuggestionsList>
-          {suggestions.map((suggestion, idx) => (
-            <S.Suggestion
-              $isActive={activeIndex === idx}
-              onMouseEnter={handleMouseSelection(idx)}
-              onMouseDown={() => onSelect(idx)}
-              key={suggestion.name}
-              id={suggestion.name}
-            >
-              <S.SuggestionValue>{suggestion.name}</S.SuggestionValue>
-              <S.SuggestionType>{suggestion.type}</S.SuggestionType>
-            </S.Suggestion>
-          ))}
+        <S.SuggestionsList id="suggestions" role="listbox">
+          {suggestions.length ? (
+            suggestions.map((suggestion, idx) => (
+              <S.Suggestion
+                $isActive={activeIndex === idx}
+                aria-selected={activeIndex === idx}
+                onMouseEnter={handleMouseSelection(idx)}
+                onMouseDown={() => onSelect(idx)}
+                key={suggestion.name}
+                id={suggestion.name}
+                role="option"
+              >
+                <S.SuggestionValue>{suggestion.name}</S.SuggestionValue>
+                <S.SuggestionType>{suggestion.type}</S.SuggestionType>
+              </S.Suggestion>
+            ))
+          ) : (
+            <S.Message role="option" aria-disabled="true">
+              {copies.search['searchbox.noResults']}
+            </S.Message>
+          )}
         </S.SuggestionsList>
       )}
-
-      {suggestions.length === 0 && !isLoading && (
-        <S.Message>{copies.search['searchbox.noResults']}</S.Message>
-      )}
-
       {isLoading && <S.Spinner />}
     </S.Wrapper>
   );
